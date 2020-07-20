@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="BibliotecaAppWeb.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="Css/Estilos.css" rel="stylesheet" />
+            
+    <title>Biblioteca Virtual</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+
+            <a class="navbar-brand text-primary cursor" href="https://www.linkedin.com/in/ezequiel-san-pedro-24439b17b/">Linkedin</a>
+            <a class="navbar-brand text-primary cursor" href="https://github.com/sanpedrofabianezequiel">GitHub</a>
+            <a class="navbar-brand text-primary cursor" href="#">Proyectos</a>
+            <button class="navbar-toggler   cursor" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon   "></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-primary cursor" href="https://www.instagram.com/ezeungusto/">Instagram<span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                </ul>
+                <img class="pequeña cursor" style="margin-left:0px" id="idGitHub" src="Imagenes/logoEnCirculo.png"/>
+            </div>
+        </nav>
+
+
+
+
+        <div class="container   full"> <!--div Del Coainter que le agrege mi Footer-->
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+            <footer>
+                <div>
+                    <hr />
+                    <h5 class="text-primary align-content-center; text-center">Contacts & Games              
+                    </h5>
+                    <br />
+                    <br />
+                    <div>
+                        <img class="sPequeña cursor " style="margin-left: 0px" src="Imagenes/GitHub1.png" />
+                        <img class="sPequeña cursor " style="margin-left: 0px" src="Imagenes/Instagram.png" />
+                        <img class="sPequeña cursor " style="margin-left: 0px" src="Imagenes/Linkedin.png" />
+                        <img class="sPequeña cursor " style="margin-left: 0px" src="Imagenes/Steam.png" />
+                    </div>
+                </div>
+            </footer>
+        </div>  <!--div Del Coainter que le agrege mi Footer-->
+        <br />
+
+    </form>
+
+    <script src="Scripts/jquery-3.0.0.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Js/Index.js"></script>
+
+   
+
+</body>
+</html>

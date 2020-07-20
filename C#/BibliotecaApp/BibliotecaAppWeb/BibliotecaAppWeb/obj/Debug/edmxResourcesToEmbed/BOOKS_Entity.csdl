@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BOOKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AUTHOR">
+    <Key>
+      <PropertyRef Name="AuthorId" />
+    </Key>
+    <Property Name="AuthorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuthorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PostAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BOOK" Relationship="Self.FK__BOOK__AuthorId__2F10007B" FromRole="AUTHOR" ToRole="BOOK" />
+  </EntityType>
+  <EntityType Name="BOOK">
+    <Key>
+      <PropertyRef Name="BookId" />
+    </Key>
+    <Property Name="BookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ISBN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PublisherId" Type="Int32" Nullable="false" />
+    <Property Name="AuthorId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="DateTime" Precision="0" />
+    <Property Name="Edition" Type="Int32" />
+    <Property Name="AverageRating" Type="Double" />
+    <NavigationProperty Name="AUTHOR" Relationship="Self.FK__BOOK__AuthorId__2F10007B" FromRole="BOOK" ToRole="AUTHOR" />
+    <NavigationProperty Name="CATEGORY" Relationship="Self.FK__BOOK__CategoryId__300424B4" FromRole="BOOK" ToRole="CATEGORY" />
+    <NavigationProperty Name="PUBLISHER" Relationship="Self.FK__BOOK__PublisherI__2E1BDC42" FromRole="BOOK" ToRole="PUBLISHER" />
+  </EntityType>
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BOOK" Relationship="Self.FK__BOOK__CategoryId__300424B4" FromRole="CATEGORY" ToRole="BOOK" />
+  </EntityType>
+  <EntityType Name="PUBLISHER">
+    <Key>
+      <PropertyRef Name="PublisherId" />
+    </Key>
+    <Property Name="PublisherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PublisherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PostAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BOOK" Relationship="Self.FK__BOOK__PublisherI__2E1BDC42" FromRole="PUBLISHER" ToRole="BOOK" />
+  </EntityType>
+  <EntityType Name="GetBookData">
+    <Key>
+      <PropertyRef Name="BookId" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="ISBN" />
+      <PropertyRef Name="PublisherName" />
+      <PropertyRef Name="AuthorName" />
+      <PropertyRef Name="CategoryName" />
+    </Key>
+    <Property Name="BookId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ISBN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PublisherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AuthorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__BOOK__AuthorId__2F10007B">
+    <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="1" />
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTHOR">
+        <PropertyRef Name="AuthorId" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BOOK__CategoryId__300424B4">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BOOK__PublisherI__2E1BDC42">
+    <End Role="PUBLISHER" Type="Self.PUBLISHER" Multiplicity="1" />
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PUBLISHER">
+        <PropertyRef Name="PublisherId" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="PublisherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BOOKSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" />
+    <EntitySet Name="BOOK" EntityType="Self.BOOK" />
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" />
+    <EntitySet Name="PUBLISHER" EntityType="Self.PUBLISHER" />
+    <EntitySet Name="GetBookData" EntityType="Self.GetBookData" />
+    <AssociationSet Name="FK__BOOK__AuthorId__2F10007B" Association="Self.FK__BOOK__AuthorId__2F10007B">
+      <End Role="AUTHOR" EntitySet="AUTHOR" />
+      <End Role="BOOK" EntitySet="BOOK" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BOOK__CategoryId__300424B4" Association="Self.FK__BOOK__CategoryId__300424B4">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="BOOK" EntitySet="BOOK" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BOOK__PublisherI__2E1BDC42" Association="Self.FK__BOOK__PublisherI__2E1BDC42">
+      <End Role="PUBLISHER" EntitySet="PUBLISHER" />
+      <End Role="BOOK" EntitySet="BOOK" />
+    </AssociationSet>
+    <FunctionImport Name="CreateBook">
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Isbn" Mode="In" Type="String" />
+      <Parameter Name="PublisherName" Mode="In" Type="String" />
+      <Parameter Name="AuthorName" Mode="In" Type="String" />
+      <Parameter Name="CategoryName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteBook">
+      <Parameter Name="BookId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateBook">
+      <Parameter Name="BookId" Mode="In" Type="Int32" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="ISBN" Mode="In" Type="String" />
+      <Parameter Name="PublisherName" Mode="In" Type="String" />
+      <Parameter Name="AuthorName" Mode="In" Type="String" />
+      <Parameter Name="CategoryName" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

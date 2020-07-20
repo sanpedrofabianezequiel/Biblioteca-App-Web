@@ -1,0 +1,32 @@
+﻿var gitHub = document.querySelector('#idGitHub');
+
+gitHub.addEventListener('click', function (e) {
+    location.href = "https://github.com/sanpedrofabianezequiel";
+})
+
+var contactos = document.querySelectorAll('.sPequeña');
+for (var i = 0; i < 4; i++) {
+        contactos[i].addEventListener('click', function (e) {
+                    location.href = "https://www.linkedin.com/in/ezequiel-san-pedro-24439b17b/";
+        })
+}
+
+
+/*var seleccion = document.querySelectorAll('tr');
+
+for (var i = 0; i < seleccion.length; i++) {
+
+    seleccion[i].addEventListener('click', function (e) {
+        var index = document.querySelector('#idGridView')
+
+        console.log("dato campturado " + e.target.text);
+    });
+
+}*/
+
+var cells = Array.prototype.slice.call(document.getElementById("idGridView").getElementsByTagName("td"));
+
+for (var i in cells) {
+    console.log("el valor es " + cells[i].innerHTML)
+}
+

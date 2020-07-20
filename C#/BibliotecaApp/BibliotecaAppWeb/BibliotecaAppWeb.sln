@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaAppWeb", "BibliotecaAppWeb\BibliotecaAppWeb.csproj", "{FC04784D-C6F4-40B4-B4B3-41C2B58D87D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC04784D-C6F4-40B4-B4B3-41C2B58D87D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC04784D-C6F4-40B4-B4B3-41C2B58D87D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC04784D-C6F4-40B4-B4B3-41C2B58D87D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC04784D-C6F4-40B4-B4B3-41C2B58D87D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF651A35-5604-4423-8A6A-AB7DFCBF1BB8}
+	EndGlobalSection
+EndGlobal

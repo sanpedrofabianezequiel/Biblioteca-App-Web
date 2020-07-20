@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BOOKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AUTHOR">
+    <Key>
+      <PropertyRef Name="AuthorId" />
+    </Key>
+    <Property Name="AuthorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AuthorName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="PostCode" Type="varchar" MaxLength="50" />
+    <Property Name="PostAddress" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BOOK">
+    <Key>
+      <PropertyRef Name="BookId" />
+    </Key>
+    <Property Name="BookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ISBN" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PublisherId" Type="int" Nullable="false" />
+    <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="1000" />
+    <Property Name="Year" Type="date" />
+    <Property Name="Edition" Type="int" />
+    <Property Name="AverageRating" Type="float" />
+  </EntityType>
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="PUBLISHER">
+    <Key>
+      <PropertyRef Name="PublisherId" />
+    </Key>
+    <Property Name="PublisherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PublisherName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="1000" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="PostCode" Type="varchar" MaxLength="50" />
+    <Property Name="PostAddress" Type="varchar" MaxLength="50" />
+    <Property Name="EMail" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BOOKS.dbo.GetBookData' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="GetBookData">
+    <Key>
+      <PropertyRef Name="BookId" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="ISBN" />
+      <PropertyRef Name="PublisherName" />
+      <PropertyRef Name="AuthorName" />
+      <PropertyRef Name="CategoryName" />
+    </Key>
+    <Property Name="BookId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ISBN" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PublisherName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AuthorName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__BOOK__AuthorId__2F10007B">
+    <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="1" />
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTHOR">
+        <PropertyRef Name="AuthorId" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BOOK__CategoryId__300424B4">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BOOK__PublisherI__2E1BDC42">
+    <End Role="PUBLISHER" Type="Self.PUBLISHER" Multiplicity="1" />
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PUBLISHER">
+        <PropertyRef Name="PublisherId" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="PublisherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CreateBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Isbn" Type="varchar" Mode="In" />
+    <Parameter Name="PublisherName" Type="varchar" Mode="In" />
+    <Parameter Name="AuthorName" Type="varchar" Mode="In" />
+    <Parameter Name="CategoryName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="DeleteBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BookId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UpdateBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BookId" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="ISBN" Type="varchar" Mode="In" />
+    <Parameter Name="PublisherName" Type="varchar" Mode="In" />
+    <Parameter Name="AuthorName" Type="varchar" Mode="In" />
+    <Parameter Name="CategoryName" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="BOOKSModelStoreContainer">
+    <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BOOK" EntityType="Self.BOOK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PUBLISHER" EntityType="Self.PUBLISHER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GetBookData" EntityType="Self.GetBookData" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GetBookData].[BookId] AS [BookId], 
+    [GetBookData].[Title] AS [Title], 
+    [GetBookData].[ISBN] AS [ISBN], 
+    [GetBookData].[PublisherName] AS [PublisherName], 
+    [GetBookData].[AuthorName] AS [AuthorName], 
+    [GetBookData].[CategoryName] AS [CategoryName]
+    FROM [dbo].[GetBookData] AS [GetBookData]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__BOOK__AuthorId__2F10007B" Association="Self.FK__BOOK__AuthorId__2F10007B">
+      <End Role="AUTHOR" EntitySet="AUTHOR" />
+      <End Role="BOOK" EntitySet="BOOK" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BOOK__CategoryId__300424B4" Association="Self.FK__BOOK__CategoryId__300424B4">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="BOOK" EntitySet="BOOK" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BOOK__PublisherI__2E1BDC42" Association="Self.FK__BOOK__PublisherI__2E1BDC42">
+      <End Role="PUBLISHER" EntitySet="PUBLISHER" />
+      <End Role="BOOK" EntitySet="BOOK" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
